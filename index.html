@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Photo to Lineart</title>
+	<script async src="https://docs.opencv.org/4.x/opencv.js"></script>
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/buttons.css">
+	<link rel="stylesheet" href="css/file-upload.css">
+</head>
+
+<body class="centered">
+<main>
+	<h1>Photo to Lineart</h1>
+	<p>Hier kannst du ein Bild hochladen und es in crappy Lineart umwandeln.</p>
+	<div id="creator-container">
+		<div id="canvas-container">
+			<canvas id="canvas-output"></canvas>
+		</div>
+		<div id="controls-container">
+			<div>
+				<label id="upload-label" for="image-input" class="button-21">Foto hochladen</label>
+				<input type="file" id="image-input" class="input-21" accept="image/*">
+			</div>
+			<label for="blur" id="blur-label">Weichzeichner:</label>
+			<input type="range" id="blur" name="blur" min="0" max="10" value="1">
+			<label for="kernel" id="kernel-label">Liniendicke:</label>
+			<input type="range" id="kernel" name="kernel" min="1" max="10" value="3">
+			<div>
+				<button id="save-button" class="button-21" disabled>Lineart speichern</button>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script src="js/index.js"></script>
+</body>
+</html>

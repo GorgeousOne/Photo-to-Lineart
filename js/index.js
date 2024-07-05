@@ -27,13 +27,16 @@ document.getElementById('image-input').addEventListener('change', function(e) {
 
 function downscaleImg(img, maxDim) {
 	let scale = 1;
-	let maxSize = Math.max(img.width, img.height);
+	let maxSize = Math.max(img.cols, img.rows);
+	console.log(maxSize, maxDim)
 	while (maxSize > maxDim) {
 		scale *= 2;
 		maxSize /= 2;
 	}
-	scaledImg = new cv.Mat();
+	console.log(scale, img.cols / scale, img.rows / scale);
+	let scaledImg = new cv.Mat();
 	cv.resize(img, scaledImg, new cv.Size(img.cols / scale, img.rows / scale), 0, 0, cv.INTER_AREA);
+	console.log("pls shrink", scaledImg.cols, scaledImg.rows);
 	return [scaledImg, scale];
 }
 
@@ -44,7 +47,9 @@ imgElement.onload = function () {
 	src = cv.imread(canvas);
 	gray = new cv.Mat();
 	cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
-	[grayPreview, previewScale] = downscaleImg(gray, 512);
+	//scale to min 360px and max 720px?
+	[grayPreview, previewScale] = downscaleImg(gray, 720);
+	console.log(grayPreview.cols, grayPreview.rows)
 	update();
 };
 
